@@ -10,7 +10,14 @@
         }
       ],
       "UpstreamPathTemplate": "/catalog",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [ "GET" ],
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
     },
     {
       "DownstreamPathTemplate": "/api/customer",
@@ -24,5 +31,11 @@
       "UpstreamPathTemplate": "/customer",
       "UpstreamHttpMethod": [ "GET" ]
     }
-  ]
+  ],
+  "GlobalConfiguration": {
+    "RateLimitOptions": {
+      "QuotaExceededMessage": "You want more API, pay some money !!!!",
+      "HttpStatusCode": 999
+    }
+  }
 }
