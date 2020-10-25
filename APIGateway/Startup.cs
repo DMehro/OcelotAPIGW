@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -19,6 +20,16 @@ namespace APIGateway
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            var identityBuilder = services.AddAuthentication();
+            identityBuilder.AddIdentityServerAuthentication("CatalogAPIKey", options =>
+            {
+                options.Authority = "{IDM_SERVER_URL}";
+                options.RequireHttpsMetadata = false;
+                options.ApiName = "{RESOURCE_API_NAME}";
+                options.ApiSecret = "{RESOIRCE_API_Secret}";
+                options.SupportedTokens = SupportedTokens.Jwt;
+            });
+
             services.AddOcelot();
         }
 

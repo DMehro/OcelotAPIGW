@@ -11,12 +11,9 @@
       ],
       "UpstreamPathTemplate": "/catalog",
       "UpstreamHttpMethod": [ "GET" ],
-      "RateLimitOptions": {
-        "ClientWhitelist": [],
-        "EnableRateLimiting": true,
-        "Period": "1s",
-        "PeriodTimespan": 1,
-        "Limit": 1
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "CatalogAPIKey",
+        "AllowedScopes": []
       }
     },
     {
